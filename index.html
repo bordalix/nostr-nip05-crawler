@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Primary Meta Tags -->
+    <title>Nostr nip05</title>
+    <meta name="title" content="Nostr nip05" />
+    <meta name="description" content="Find all users on a nip05 provider" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nostr-nip05.pages.dev/" />
+    <meta property="og:title" content="Nostr nip05" />
+    <meta
+      property="og:description"
+      content="Find all users on a nip05 provider" />
+    <meta property="og:image" content="/img/nostr-nip05_og.png" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://nostr-nip05.pages.dev/" />
+    <meta property="twitter:title" content="Nostr nip05" />
+    <meta
+      property="twitter:description"
+      content="Find all users on a nip05 provider" />
+    <meta property="twitter:image" content="/img/nostr-nip05_twitter.png" />
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="https://nostr-utils.pages.dev/img/nip05.png"
+      type="image/x-icon" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://nostr-utils.pages.dev/css/style.css" />
+    <!-- Lightning -->
+    <meta name="lightning" content="bordalix@getalby.com" />
+    <!-- PWA -->
+    <meta name="theme-color" content="#ffffff" />
+    <link
+      rel="apple-touch-icon"
+      href="https://nostr-utils.pages.dev/img/nip05.png" />
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="space-between">
+        <h1>Nostr nip05 crawler</h1>
+        <p>
+          <a href="https://github.com/bordalix/nostr-nip05"
+            ><img src="https://nostr-utils.pages.dev/img/github.png"
+          /></a>
+          <a href="https://twitter.com/bordalix"
+            ><img src="https://nostr-utils.pages.dev/img/twitter.png"
+          /></a>
+          <a
+            href="https://snort.social/p/npub1vt803quxxq32fuwkp42g2lyaw2t9qupvnl3z0vyc3s9kudkyhn8qt28cxv"
+            ><img src="https://nostr-utils.pages.dev/img/nostr.png"
+          /></a>
+        </p>
+      </div>
+      <p>Find all users on a nip05 provider.</p>
+      <details>
+        <summary>Know more</summary>
+        <p>This app will fetch all users from a nip05 provider.</p>
+        <p>
+          Repo at
+          <a href="https://github.com/bordalix/nostr-nip05"
+            >https://github.com/bordalix/nostr-nip05</a
+          >
+        </p>
+        <p>
+          Twitter
+          <a href="https://twitter.com/bordalix">thread</a>
+          for discussion
+        </p>
+        <p>
+          Nostr
+          <a
+            href="https://snort.social/p/npub1vt803quxxq32fuwkp42g2lyaw2t9qupvnl3z0vyc3s9kudkyhn8qt28cxv"
+            >thread</a
+          >
+          for discussion
+        </p>
+      </details>
+      <div class="box gray">
+        <form>
+          <p style="margin-bottom: 0">Insert nip05 provider</p>
+          <div class="space-between">
+            <p>
+              <input
+                type="text"
+                id="provider"
+                name="provider"
+                placeholder="Provider (ex: stacker.news)"
+                style="width: 200px"
+                required />
+            </p>
+            <p>
+              <button id="fetch-users" onclick="fetchUsers(); return false;">
+                Find users
+              </button>
+            </p>
+          </div>
+          <p style="margin-bottom: 0">
+            Optionally you can add your public key and the app will fetch your
+            following list and mark users you're already following
+          </p>
+          <div class="space-between">
+            <p>
+              <input
+                type="text"
+                id="pubkey"
+                name="pubkey"
+                placeholder="Pubkey (npub or hex)"
+                style="width: 200px" />
+            </p>
+            <p>
+              <button
+                id="get-from-extension"
+                onclick="getFromExtension(); return false;"
+                style="visibility: hidden">
+                Get from extension
+              </button>
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="box red" id="bad-request" style="display: none">
+        <p>Bad request</p>
+      </div>
+      <div class="box red" id="no-users-found" style="display: none">
+        <p>No users found</p>
+      </div>
+      <div class="box" id="results" style="padding: 1em 0.5em">
+        <div class="space-between" id="fetching-users" style="display: none">
+          <p id="fetching-status" style="margin-top: 0"></p>
+          <p style="margin-top: 0; padding-top: 2px">
+            <progress
+              type="range"
+              id="fetching-progress"
+              name="fetching-progress"
+              min="0"
+              max="20"
+              value="0" />
+          </p>
+        </div>
+        <div id="results-header" style="display: none">
+          <div class="space-between">
+            <p style="margin: 0" id="num-results"></p>
+            <p style="margin: 0">
+              <span style="background-color: rgba(236, 210, 166, 0.7)"
+                >&nbsp; &nbsp;</span
+              >
+              = following
+            </p>
+          </div>
+          <hr />
+        </div>
+      </div>
+      <footer>
+        <p style="margin: 0">Find more nostr utils on</p>
+        <p style="margin: 0">
+          <a href="https://nostr-utils.pages.dev"
+            >https://nostr-utils.pages.dev</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <script src="https://bundle.run/buffer@6.0.3"></script>
+    <script src="https://bundle.run/bech32@2.0.0"></script>
+    <script src="https://nostr-utils.pages.dev/js/jquery-3.6.2.min.js"></script>
+    <script src="https://nostr-utils.pages.dev/js/nostr-utils.js"></script>
+    <script src="js/relays.js"></script>
+    <script src="js/nostr-nip05.js"></script>
+  </body>
+</html>
