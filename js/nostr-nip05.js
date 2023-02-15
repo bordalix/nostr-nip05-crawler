@@ -1,9 +1,5 @@
 // map with list of user following
 const following = new Map()
-following.set(
-  'fed0a61cc05d4defb0ef45c8a56674e6dd1b640c0fdf35f70705c1358ec1867a',
-  true
-)
 
 // show user (username and npub)
 const renderUser = (name, pubkey) => {
@@ -119,7 +115,12 @@ const fetchUsers = async () => {
 
 const getFromExtension = async () => {
   const pubkey = await window.nostr.getPublicKey()
-  if (pubkey) $('#pubkey').val(pubkey)
+  if (pubkey) $('#pubkey').val(pubkey).change()
+}
+
+const pubkeyOnChange = () => {
+  const display = $('#pubkey').val() ? 'none' : ''
+  $('#get-from-extension').css('display', display)
 }
 
 if (window.nostr) {
