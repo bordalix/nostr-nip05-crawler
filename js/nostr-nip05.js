@@ -52,12 +52,10 @@ const fetchListOfFollowing = async (pubkey) => {
   data.map((line) =>
     line.tags.map(([p, pubkey]) => following.set(pubkey, true))
   )
-  console.log(following)
   // inform user fetching is done
   $('#fetching-status').text('Done fetching')
   clearInterval(fetchInterval)
   $('#fetching-progress').val(20)
-  console.log('data', data)
 }
 
 const fetchUsersFromProvider = async () => {
@@ -72,7 +70,7 @@ const fetchUsersFromProvider = async () => {
   // get json file
   let response
   try {
-    response = await fetch(url)
+    response = await fetch(url, { redirect: 'follow' })
   } catch (err) {
     $('#bad-request').css('display', '')
     throw new Error(err)
