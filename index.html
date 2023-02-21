@@ -4,32 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Primary Meta Tags -->
-    <title>Nostr nip05</title>
+    <title>Nostr nip05 crawler</title>
     <meta name="title" content="Nostr nip05" />
     <meta name="description" content="Find all users on a nip05 provider" />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://nostr-nip05.pages.dev/" />
-    <meta property="og:title" content="Nostr nip05" />
+    <meta property="og:url" content="https://nostr-nip05-crawler.pages.dev/" />
+    <meta property="og:title" content="Nostr nip05 crawler" />
     <meta
       property="og:description"
       content="Find all users on a nip05 provider" />
     <meta property="og:image" content="/img/nostr-nip05_og.png" />
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://nostr-nip05.pages.dev/" />
-    <meta property="twitter:title" content="Nostr nip05" />
+    <meta
+      property="twitter:url"
+      content="https://nostr-nip05-crawler.pages.dev/" />
+    <meta property="twitter:title" content="Nostr nip05 crawler" />
     <meta
       property="twitter:description"
       content="Find all users on a nip05 provider" />
-    <meta property="twitter:image" content="/img/nostr-nip05_twitter.png" />
+    <meta
+      property="twitter:image"
+      content="/img/nostr-nip05-crawler_twitter.png" />
     <!-- Favicon -->
     <link
       rel="shortcut icon"
-      href="https://nostr-utils.pages.dev/img/nip05.png"
+      href="img/nip05-crawler.png"
       type="image/x-icon" />
     <!-- CSS -->
-    <link rel="stylesheet" href="https://nostr-utils.pages.dev/css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <!-- Lightning -->
     <meta name="lightning" content="bordalix@getalby.com" />
     <!-- PWA -->
@@ -45,14 +49,14 @@
         <h1>Nostr nip05 crawler</h1>
         <p>
           <a href="https://github.com/bordalix/nostr-nip05"
-            ><img src="https://nostr-utils.pages.dev/img/github.png"
+            ><img src="img/github.png"
           /></a>
           <a href="https://twitter.com/bordalix"
-            ><img src="https://nostr-utils.pages.dev/img/twitter.png"
+            ><img src="img/twitter.png"
           /></a>
           <a
             href="https://snort.social/p/npub1vt803quxxq32fuwkp42g2lyaw2t9qupvnl3z0vyc3s9kudkyhn8qt28cxv"
-            ><img src="https://nostr-utils.pages.dev/img/nostr.png"
+            ><img src="img/nostr.png"
           /></a>
         </p>
       </div>
@@ -60,6 +64,10 @@
       <details>
         <summary>Know more</summary>
         <p>This app will fetch all users from a nip05 provider.</p>
+        <p>
+          If you add a public key, it will fetch the list of followings for that
+          public key and mark the users which are alreay followed on Nostr
+        </p>
         <p>
           Repo at
           <a href="https://github.com/bordalix/nostr-nip05-crawler">github</a>
